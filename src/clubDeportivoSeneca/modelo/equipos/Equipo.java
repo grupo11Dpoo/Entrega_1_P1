@@ -203,6 +203,17 @@ public class Equipo {
 		
 		return null;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        return o instanceof Equipo e && nombre.equalsIgnoreCase(e.nombre)
+                && deporte.equals(e.deporte) && categoriaEdad.equals(e.categoriaEdad);
+    }
+ 
+    @Override
+    public String toString() {
+        return nombre + " (" + deporte + ", " + categoriaEdad + ")";
+    }
 
 }
 
