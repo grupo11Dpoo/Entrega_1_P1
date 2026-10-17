@@ -39,6 +39,13 @@ public class CategoriaEdad {
 		}
 	}
 	
-	
+	@Override
+    public boolean equals(Object o) {
+        return o instanceof CategoriaEdad c && nombreCategoria.equalsIgnoreCase(c.nombreCategoria);
+    }
 
+    @Override
+    public String toString() {
+        return nombreCategoria;
+    }
 }

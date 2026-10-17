@@ -15,5 +15,15 @@ public abstract class Deporte {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        return o instanceof Deporte d && nombre.equalsIgnoreCase(d.nombre);
+    }
+ 
+    @Override
+    public String toString() {
+        return nombre;
+    }
 
 }
