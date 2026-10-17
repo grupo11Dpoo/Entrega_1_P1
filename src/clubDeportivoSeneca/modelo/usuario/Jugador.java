@@ -11,6 +11,9 @@ import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.equipos.Miembro;
 import clubDeportivoSeneca.modelo.partidos.Sancion;
+import clubDeportivoSeneca.modelo.individual.NivelDeporteIndividual;
+import clubDeportivoSeneca.modelo.individual.NivelJugador;
+import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 
 public class Jugador extends Usuario implements Comprador{
 	
