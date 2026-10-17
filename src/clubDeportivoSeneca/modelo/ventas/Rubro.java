@@ -1,5 +1,7 @@
 package clubDeportivoSeneca.modelo.ventas;
 
-public class Rubro {
-
+public enum Rubro {
+	TIENDA,
+	CAFETERIA,
+	MENSUALIDADES
 }

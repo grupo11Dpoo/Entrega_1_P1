@@ -1,5 +1,7 @@
 package clubDeportivoSeneca.modelo.ventas;
 
-public class Temperatura {
+public enum Temperatura {
+	FRIA,
+	CALIENTE;
 
 }
