@@ -1,6 +1,9 @@
 package clubDeportivoSeneca.modelo.competencias;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
@@ -52,32 +55,105 @@ public class Ascun extends Circuito {
 		fase.agregarPartido(partido);
 	}
 	
-	public List<String> calcularClasificados(Fase fase) {
-		//TODO:
+	public List<String> calcularClasificados(Fase fase) throws Exception {
+		
+		if (!fases.contains(fase)) {
+	        throw new Exception("La fase no pertenece a este circuito.");
+	    }
+
+	    if (fase.getTipo() == TipoFase.GRUPOS) {
+	        return clasificarGrupos(fase);
+	   
+	    } else {
+	        return ganadoresEliminacion(fase);
+	    }
 	}
 	
 	public List<String> calcularClasificados(Fase fase, int cupos) {
-		//TODO:
+		List<String> todos = calcularClasificados(fase);
+	    int cantidad = cupos;
+
+	    if (cupos > todos.size()) {
+	        cantidad = todos.size();
+	    }
+
+	    return new ArrayList<>(todos.subList(0, cantidad));
 	}
 
 	public String desdempatePorEnfrentamiento(String a, String b) {
-		//TODO:
+		
+		int pa = puntosEntre(a, Set.of(b), getPartidos());
+        int pb = puntosEntre(b, Set.of(a), getPartidos());
+        if (pa > pb) return a;
+        if (pb > pa) return b;
+        return null;
 	}
 	
 	@Override
 	public List<String> calcularClasificacion() {
-		//TODO:
+		for (int i = fases.size() - 1; i >= 0; i--) {
+			Fase f = fases.get(i);
+	        for (PartidoCompetencia p : f.getPartidos()) {
+	            if (p.isFinalizado()) return calcularClasificados(f);
+	        }
+	    }
+	    return new ArrayList<>();
 	}
+	 
+    //Tabla de la fase de grupos
+	public List<FilaTabla> calcularTablaGrupo(Fase fase) throws Exception {
+        
+		if (!fases.contains(fase)) {
+			throw new Exception("La fase no pertenece a este circuito.");
+		}
+		
+	    if (fase.getTipo() != TipoFase.GRUPOS) {
+	    	throw new Exception("La fase no es grupal.");
+	    }
+	    
+	    Map<String, int[]> acumulado = acumularGrupo(fase);
+        List<FilaTabla> tabla = new ArrayList<>();
+	   
+        for (String nombre : clasificarGrupos(fase)) {
+	        int[] datos = acumulado.get(nombre);
+            tabla.add(new FilaTabla(nombre, datos[0], datos[1]));
+	    }
+	    return tabla;
+    }
 	
-	public List<String> clasificarGrupos(Fase fase) {
-		//TODO:
-	}
-	
-	public List<String> ganadoresEliminacion(Fase fase) {
-		//TODO:
+	public List<String> ganadoresEliminacion(Fase fase) throws Exception {
+		
+	    List<String> ganadores = new ArrayList<>();
+	    
+        for (PartidoCompetencia partido : fase.getPartidos()) {
+            if (!partido.isFinalizado()) {
+            	
+            	if (partido.getMarcadorLocal() == partido.getMarcadorVisitante()) {
+                    throw new Exception("No se pueden tener empate en partidos de eliminación directa.");
+                }
+            	
+            	if(partido.getMarcadorLocal() > partido.getMarcadorVisitante()) {
+            		ganadores.add(partido.getEquipoLocal().getNombre());
+            		
+            	} else {
+            		ganadores.add(partido.getInstitucionRival());
+            	}
+            }
+            
+        }
+        return ganadores;
 	}
 	
 	public int puntosEntre(String equipo, Set<String> grupo, List<PartidoCompetencia> partidos) {
-		//TODO:
+		int total = 0;
+        for (PartidoCompetencia partido : partidos) {
+            if (!partido.isFinalizado()) continue;
+            int[] puntos = getDeporte().calcularPuntosLiga(partido.getMarcadorLocal(), partido.getMarcadorVisitante());
+            String local = partido.getEquipoLocal().getNombre();
+            String rival = partido.getInstitucionRival();
+            if (local.equals(equipo) && grupo.contains(rival)) total += puntos[0];
+            else if (rival.equals(equipo) && grupo.contains(local)) total += puntos[1];
+        }
+        return total;
 	}
 }
