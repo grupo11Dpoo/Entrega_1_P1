@@ -102,27 +102,6 @@ public class Ascun extends Circuito implements java.io.Serializable {
 	    }
 	    return new ArrayList<>();
 	}
-	 
-    //Tabla de la fase de grupos
-	public List<FilaTabla> calcularTablaGrupo(Fase fase) throws Exception {
-        
-		if (!fases.contains(fase)) {
-			throw new Exception("La fase no pertenece a este circuito.");
-		}
-		
-	    if (fase.getTipo() != TipoFase.GRUPOS) {
-	    	throw new Exception("La fase no es grupal.");
-	    }
-	    
-	    Map<String, int[]> acumulado = acumularGrupo(fase);
-        List<FilaTabla> tabla = new ArrayList<>();
-	   
-        for (String nombre : clasificarGrupos(fase)) {
-	        int[] datos = acumulado.get(nombre);
-            tabla.add(new FilaTabla(nombre, datos[0], datos[1]));
-	    }
-	    return tabla;
-    }
 	
 	public List<String> ganadoresEliminacion(Fase fase) throws Exception {
 		
@@ -147,7 +126,7 @@ public class Ascun extends Circuito implements java.io.Serializable {
         return ganadores;
 	}
 	
-	public int puntosEntre(String equipo, Set<String> grupo, List<PartidoCompetencia> partidos) {
+	public int puntosEntre(String equipo, Set<String> grupo, List<PartidoCompetencia> partidos) throws Exception {
 		int total = 0;
         for (PartidoCompetencia partido : partidos) {
             if (!partido.isFinalizado()) continue;
