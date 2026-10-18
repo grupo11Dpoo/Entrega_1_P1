@@ -2,13 +2,16 @@ package clubDeportivoSeneca.modelo.competencias;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.HashMap;
 
 import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 
-public class Ascun extends Circuito {
+public class Ascun extends Circuito implements java.io.Serializable {
 	
 	private List<Fase> fases;
 
