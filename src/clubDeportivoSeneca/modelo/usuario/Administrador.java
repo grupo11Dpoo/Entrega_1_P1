@@ -1,17 +1,27 @@
 package clubDeportivoSeneca.modelo.usuario;
 
-import java.time.LocalDate
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Map;
 
 import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
+import clubDeportivoSeneca.modelo.entrenamiento.Entrenamiento;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
+import clubDeportivoSeneca.modelo.individual.PartidoIndividual;
 import clubDeportivoSeneca.modelo.inventario.Articulo;
 import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
 import clubDeportivoSeneca.modelo.inventario.SugerenciaProducto;
+import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
+import clubDeportivoSeneca.modelo.partidos.PartidoInterno;
 import clubDeportivoSeneca.modelo.turnos.Turno;
+import clubDeportivoSeneca.modelo.ventas.Periodo;
+import clubDeportivoSeneca.modelo.ventas.Rubro;
+import clubDeportivoSeneca.modelo.ventas.VentaServiciosAdicionales;
 import clubDeportivoSeneca.modelo.turnos.SolicitudCambioTurno;
 import clubDeportivoSeneca.modelo.instalaciones.InventarioInstalaciones;
+import clubDeportivoSeneca.modelo.instalaciones.Reserva;
 import clubDeportivoSeneca.sistema.ClubDeportivoSeneca;
 
 public class Administrador extends Usuario implements java.io.Serializable {
@@ -71,7 +81,7 @@ public class Administrador extends Usuario implements java.io.Serializable {
 	}
 	
 	//Turnos
-	public Turno asignarTurno(Empleado empleado, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
+	public Turno asignarTurno(Empleado empleado, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) throws Exception {
 		return cds().getGestorTurnos().asignarTurno(empleado, fecha, horaInicio, horaFin);
 	}
 	
@@ -79,50 +89,42 @@ public class Administrador extends Usuario implements java.io.Serializable {
 		return cds().getGestorTurnos().aprobarCambio(solicitud);
 	}
 	
-	//Consultas y reportes:
+	public void rechazarCambioTurno(SolicitudCambioTurno solicitud) {
+        cds().getGestorTurnos().rechazarCambio(solicitud);
+    }
+	
+	//Consultas
 	public InventarioInstalaciones verInventarioInstalaciones(InventarioInstalaciones instalaciones) {
-		return instalaciones;
+		return cds().getInventarioInstalaciones().getInstalaciones();
 	}
 	
-	//TODO:
-	public InventarioArticulos verInventarioArticulos(InventarioArticulos articulos) {
-		return articulos;
-	}
+	public Map<String, Map<Articulo, Integer>> verInventarioArticulos() {
+        return cds.getInventarioArticulos().getStock();
+    }
 	
-	//TODO:
-	public void verHistorialReservas() {
-		if (cds == null) return;
-        cds.getInventarioInstalaciones().getHistorial().getReservas().forEach(System.out::println);
+	public List<Reserva> verHistorialReservas() {
+		return cds().getInventarioInstalaciones().getHistorial().getReservas();
 	}
 		
-	//TODO:
-	public void verHistorialPartidos() {
-			
-	}
+	public List<PartidoInterno> verHistorialPartidos() {
+        return cds().getPartidosInternos();
+    }
+ 
+    public List<PartidoIndividual> verHistorialPartidosIndividuales() {
+        return cds().getPartidosIndividuales();
+    }
+ 
+    public List<Entrenamiento> verHistorialEntrenamientos() {
+        return cds().getEntrenamientos();
+    }
+	
+    //Reportes
+	public List<VentaServiciosAdicionales> reporteVentas() {
+        return cds().getVentas();
+    }
 		
-	//TODO:
-	public void verHistorialEntrenamientos() {
-			
-	}
-		
-	//TODO:
-	public void reporteVentas() {
-			
-	}
-		
-	//TODO:
-	public void reporteAsistencia() {
-			
-	}
-		
-	//TODO:
-	public void reporteResultados() {
-			
-	}
-		
-	//TODO:
 	public void reporteRankings() {
-			
+		cds.getRankings();
 	}
 
 }
