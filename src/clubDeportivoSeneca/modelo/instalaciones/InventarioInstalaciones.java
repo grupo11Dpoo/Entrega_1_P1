@@ -8,7 +8,7 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class InventarioInstalaciones {
+public class InventarioInstalaciones implements java.io.Serializable {
 
     private List<Instalacion> instalaciones;
     private HistorialReservas historial;

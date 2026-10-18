@@ -11,7 +11,7 @@ import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 import clubDeportivoSeneca.modelo.usuario.Entrenador;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Entrenamiento {
+public class Entrenamiento implements java.io.Serializable {
 
     private LocalDate fecha;
     private LocalTime hora;

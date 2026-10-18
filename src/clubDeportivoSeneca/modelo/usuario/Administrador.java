@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.usuario;
 
-import java.time.LocalDate;
+import java.time.LocalDate
 import java.time.LocalTime;
 
 import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
@@ -10,9 +10,11 @@ import clubDeportivoSeneca.modelo.inventario.Articulo;
 import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
 import clubDeportivoSeneca.modelo.inventario.SugerenciaProducto;
 import clubDeportivoSeneca.modelo.turnos.Turno;
+import clubDeportivoSeneca.modelo.turnos.SolicitudCambioTurno;
+import clubDeportivoSeneca.modelo.instalaciones.InventarioInstalaciones;
 import clubDeportivoSeneca.sistema.ClubDeportivoSeneca;
 
-public class Administrador extends Usuario{
+public class Administrador extends Usuario implements java.io.Serializable {
 
 	private ClubDeportivoSeneca cds;
 	
@@ -28,10 +30,10 @@ public class Administrador extends Usuario{
 	    this.cds = cds; 
 	 }
 	 
-	 public ClubDeportivoSeneca cds() throws Exception {
+	 public ClubDeportivoSeneca cds() {
 	    
 		 if (cds == null) {
-			 throw new Exception("El administrador no está asociado a un club");
+			 throw new IllegalStateException("El administrador no está asociado a un club");
 		 }
 	    return cds;
 	 }
@@ -73,23 +75,24 @@ public class Administrador extends Usuario{
 		return cds().getGestorTurnos().asignarTurno(empleado, fecha, horaInicio, horaFin);
 	}
 	
-	public boolean aprobarCambio(SolicitudCambioTurno solicitud) {
+	public boolean aprobarCambio(SolicitudCambioTurno solicitud) throws Exception {
 		return cds().getGestorTurnos().aprobarCambio(solicitud);
 	}
 	
 	//Consultas y reportes:
 	public InventarioInstalaciones verInventarioInstalaciones(InventarioInstalaciones instalaciones) {
-		
+		return instalaciones;
 	}
 	
 	//TODO:
 	public InventarioArticulos verInventarioArticulos(InventarioArticulos articulos) {
-			
+		return articulos;
 	}
 	
 	//TODO:
 	public void verHistorialReservas() {
-		
+		if (cds == null) return;
+        cds.getInventarioInstalaciones().getHistorial().getReservas().forEach(System.out::println);
 	}
 		
 	//TODO:

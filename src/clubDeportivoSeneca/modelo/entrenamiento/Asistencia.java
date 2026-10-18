@@ -2,7 +2,7 @@ package clubDeportivoSeneca.modelo.entrenamiento;
 
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Asistencia {
+public class Asistencia implements java.io.Serializable {
 
     private Jugador jugador;
     private EstadoAsistencia estado;

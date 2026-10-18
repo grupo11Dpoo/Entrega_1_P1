@@ -9,7 +9,7 @@ import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public abstract class PartidoConjuntos {
+public abstract class PartidoConjuntos implements java.io.Serializable{
 	
 	private LocalDate fecha;
 	private DeporteDeConjunto deporte;
@@ -209,23 +209,4 @@ public abstract class PartidoConjuntos {
 	public abstract void validarRequisitos() throws Exception;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

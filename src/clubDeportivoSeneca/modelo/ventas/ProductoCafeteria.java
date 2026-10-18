@@ -1,7 +1,7 @@
 package clubDeportivoSeneca.modelo.ventas;
 import java.util.Objects;
 
-public abstract class ProductoCafeteria {
+public abstract class ProductoCafeteria implements java.io.Serializable{
 	private final String nombre;
 	private int precio;
 	

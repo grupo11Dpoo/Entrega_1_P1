@@ -8,7 +8,7 @@ import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Equipo {
+public class Equipo implements java.io.Serializable {
 	
 	private String nombre;
 	private DeporteDeConjunto deporte;
@@ -216,42 +216,3 @@ public class Equipo {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

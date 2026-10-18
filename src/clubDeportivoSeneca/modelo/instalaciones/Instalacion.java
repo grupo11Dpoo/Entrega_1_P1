@@ -6,7 +6,7 @@ import java.util.List;
 
 import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 
-public abstract class Instalacion {
+public abstract class Instalacion implements java.io.Serializable {
 
     private String id;
     private DeporteIndividual disciplina;

@@ -6,7 +6,7 @@ import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class RequisitosInscripcionCircuito {
+public class RequisitosInscripcionCircuito implements java.io.Serializable{
 	
 	private int nominaMinimaJugadores;
 	private CategoriaEdad categoriaPermitida;
@@ -65,27 +65,3 @@ public class RequisitosInscripcionCircuito {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

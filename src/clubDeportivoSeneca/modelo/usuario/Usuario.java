@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.usuario;
 
-public abstract class Usuario {
+public abstract class Usuario implements java.io.Serializable {
 	
 	private final String login;
 	private String password;

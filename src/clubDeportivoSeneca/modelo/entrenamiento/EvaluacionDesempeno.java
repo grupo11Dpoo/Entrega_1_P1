@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.entrenamiento;
 
-public class EvaluacionDesempeno {
+public class EvaluacionDesempeno implements java.io.Serializable {
 
     private int nota;
     private String comentario;

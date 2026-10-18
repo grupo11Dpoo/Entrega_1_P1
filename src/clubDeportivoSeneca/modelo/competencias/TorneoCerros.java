@@ -6,7 +6,7 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 
-public class TorneoCerros extends Circuito {
+public class TorneoCerros extends Circuito implements java.io.Serializable{
 	
 	private EstadisticasLiga estadisticasLiga;
 	private List<PartidoCompetencia> partidosContados;
@@ -16,7 +16,7 @@ public class TorneoCerros extends Circuito {
 		
 		super(nombre, entidadOrganizadora, temporada, deporte, categoriaEdad, "Liga todos contra todos.", requisitosIncripcion);
 		
-		this.estadisticasLiga = null;
+		this.estadisticasLiga = new EstadisticasLiga();;
 		this.partidosContados = new ArrayList<PartidoCompetencia>();
 	}
 
@@ -71,9 +71,14 @@ public class TorneoCerros extends Circuito {
 	//}
 	
 	//TODO:
-	public void calcularClasificacion() {
-		
+	public List<String> calcularClasificacion() {
+		List<String> resultado = new ArrayList<>();
+        if (estadisticasLiga != null) {
+            estadisticasLiga.getPuntos().entrySet().stream()
+                .sorted((a, b) -> Integer.compare(b.getValue(), a.getValue()))
+                .forEach(e -> resultado.add(e.getKey() + ": " + e.getValue() + " puntos"));
+        }
+        return resultado;	
 	}
-
 
 }

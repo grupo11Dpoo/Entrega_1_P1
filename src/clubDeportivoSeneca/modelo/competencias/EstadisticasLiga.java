@@ -3,7 +3,7 @@ package clubDeportivoSeneca.modelo.competencias;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EstadisticasLiga {
+public class EstadisticasLiga implements java.io.Serializable {
 	
 	private Map<String, Integer> puntos;
 	private Map<String, Integer> partidosJugados;
@@ -48,26 +48,6 @@ public class EstadisticasLiga {
 	//}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

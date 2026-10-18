@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Reserva {
+public class Reserva implements java.io.Serializable {
 
     private Jugador jugador;
     private Instalacion instalacion;

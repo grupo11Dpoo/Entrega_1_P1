@@ -3,7 +3,7 @@ package clubDeportivoSeneca.modelo.ventas;
 import java.util.Locale;
 import java.util.Objects;
 
-public class Alergeno {
+public class Alergeno implements java.io.Serializable{
 	
 	private final String nombre;
 	

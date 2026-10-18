@@ -6,7 +6,7 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class InscripcionCompetencia {
+public class InscripcionCompetencia implements java.io.Serializable{
 	
 	private Equipo equipo;
 	private Circuito circuito;

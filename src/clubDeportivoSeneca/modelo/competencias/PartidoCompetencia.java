@@ -6,7 +6,7 @@ import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.partidos.EstadisticaJugadorPartido;
 import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 
-public class PartidoCompetencia extends PartidoConjuntos {
+public class PartidoCompetencia extends PartidoConjuntos implements java.io.Serializable {
 	
 	private String institucionRival;
 	private String escenario;

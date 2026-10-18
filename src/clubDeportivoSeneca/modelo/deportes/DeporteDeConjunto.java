@@ -4,7 +4,7 @@ import clubDeportivoSeneca.modelo.partidos.EstadisticaJugadorPartido;
 import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public abstract class DeporteDeConjunto extends Deporte {
+public abstract class DeporteDeConjunto extends Deporte implements java.io.Serializable {
 	
 	private int minJugadoresHabilitados;
 	private boolean permiteEmpate;

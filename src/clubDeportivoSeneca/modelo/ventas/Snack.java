@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Snack extends ProductoCafeteria {
+public class Snack extends ProductoCafeteria implements java.io.Serializable {
 	
 	private final List<Alergeno>alergenos;
 	

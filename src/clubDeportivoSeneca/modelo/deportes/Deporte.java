@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.deportes;
 
-public abstract class Deporte {
+public abstract class Deporte implements java.io.Serializable{
 	protected String nombre;
 
 	protected Deporte(String nombre) throws Exception {

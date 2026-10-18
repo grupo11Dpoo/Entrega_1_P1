@@ -2,7 +2,7 @@ package clubDeportivoSeneca.modelo.instalaciones;
 
 import java.time.LocalTime;
 
-public class HorarioBloque {
+public class HorarioBloque implements java.io.Serializable {
 
     private LocalTime horaInicio;
     private LocalTime horaFin;

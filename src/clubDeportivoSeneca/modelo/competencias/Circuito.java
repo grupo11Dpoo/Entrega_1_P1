@@ -8,7 +8,7 @@ import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public abstract class Circuito {
+public abstract class Circuito implements java.io.Serializable{
 	
 	private String nombre;
 	private String entidadOrganizadora;
@@ -121,6 +121,7 @@ public abstract class Circuito {
 			throw new Exception(motivo);
 		}
 		
+		inscritos.add(nuevaInscripcion);
 		return nuevaInscripcion;
 	}
 

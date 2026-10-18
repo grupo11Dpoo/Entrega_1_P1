@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
  
-import club.modelo.instalaciones.Instalacion;
-import club.modelo.usuarios.Comprador;
-import club.modelo.usuarios.Empleado;
-import club.modelo.usuarios.Jugador;
+import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
+import clubDeportivoSeneca.modelo.usuario.Comprador;
+import clubDeportivoSeneca.modelo.usuario.Empleado;
+import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class VentaCafeteria extends VentaServiciosAdicionales {
+public class VentaCafeteria extends VentaServiciosAdicionales implements java.io.Serializable{
 	public static final int IMPUESTO = 8;
     public static final int PROPINA_SUGERIDA = 10;
  

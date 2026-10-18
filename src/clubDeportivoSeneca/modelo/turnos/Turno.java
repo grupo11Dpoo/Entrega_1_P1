@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import clubDeportivoSeneca.modelo.usuario.Empleado;
 
-public class Turno {
+public class Turno implements java.io.Serializable {
 	private Empleado empleado;
     private LocalDate fecha;
     private LocalTime horaInicio;

@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clubDeportivoSeneca.modelo.entrenamiento.Entrenamiento;
+import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
+import clubDeportivoSeneca.modelo.entrenamiento.EstadoAsistencia;
 
-public class Entrenador extends Empleado {
+public class Entrenador extends Empleado implements java.io.Serializable {
 	
 	private List<Entrenamiento> entrenamientos;
 
@@ -27,7 +29,7 @@ public class Entrenador extends Empleado {
 		}
 	}
 	
-	public Entrenamiento planearEntrenamiento(LocalDate fecha, LocalTime hora, int duracioMinutos, this, Instalacion instalacion) {
+	public Entrenamiento planearEntrenamiento(LocalDate fecha, LocalTime hora, int duracionMinutos, Instalacion instalacion) throws Exception {
 		
 		Entrenamiento nuevoEntrenamiento = new Entrenamiento(fecha, hora, duracionMinutos, this, instalacion);
 		
@@ -36,13 +38,13 @@ public class Entrenador extends Empleado {
 		return nuevoEntrenamiento;
 	}
 	
-	public void registrarAsistencia(Entrenamiento entrenamiento, Jugador jugador, EstadoAsistencia estado) {
+	public void registrarAsistencia(Entrenamiento entrenamiento, Jugador jugador, EstadoAsistencia estado) throws Exception{
 		
 		verificarEntrenador(entrenamiento);
 		entrenamiento.registrarAsistencia(jugador, estado);
 	}
 	
-	public void registrarEvaluacion(Entrenamiento entrenamiento, Jugador jugador, int nota, String comentario) {
+	public void registrarEvaluacion(Entrenamiento entrenamiento, Jugador jugador, int nota, String comentario) throws Exception {
 		
 		verificarEntrenador(entrenamiento);
 		entrenamiento.registrarEvaluacion(jugador, nota, comentario);

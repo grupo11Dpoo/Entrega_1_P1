@@ -2,7 +2,7 @@ package clubDeportivoSeneca.modelo.inventario;
 
 import java.util.Objects;
 
-public class Articulo {
+public class Articulo implements java.io.Serializable{
 	private String nombre;
 	private String categoria;
 	private int precio;

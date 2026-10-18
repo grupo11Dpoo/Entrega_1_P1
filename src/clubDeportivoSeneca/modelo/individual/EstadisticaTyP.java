@@ -2,7 +2,7 @@ package clubDeportivoSeneca.modelo.individual;
 
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class EstadisticaTyP extends EstadisticaIndividual {
+public class EstadisticaTyP extends EstadisticaIndividual implements java.io.Serializable {
 
     private int setsGanados;
     private int gamesGanados;

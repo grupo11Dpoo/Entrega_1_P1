@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class VentasPorRubro {
+public class VentasPorRubro implements java.io.Serializable{
 	
 	private final List<VentaServiciosAdicionales> ventas;
 	

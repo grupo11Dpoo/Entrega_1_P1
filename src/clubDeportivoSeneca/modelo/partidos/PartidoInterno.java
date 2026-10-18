@@ -6,7 +6,7 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 
-public class PartidoInterno extends PartidoConjuntos {
+public class PartidoInterno extends PartidoConjuntos implements java.io.Serializable{
 	
 	private Equipo equipoVisitante;
 
@@ -82,28 +82,3 @@ public class PartidoInterno extends PartidoConjuntos {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

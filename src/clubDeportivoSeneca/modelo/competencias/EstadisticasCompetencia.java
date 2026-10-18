@@ -12,7 +12,7 @@ import clubDeportivoSeneca.modelo.partidos.EstadVoleibol;
 import clubDeportivoSeneca.modelo.partidos.EstadisticaJugadorPartido;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class EstadisticasCompetencia {
+public class EstadisticasCompetencia implements java.io.Serializable {
 	
 	private static final int PESO_GOL = 3;
 	private static final int PESO_ASISTENCIA = 2;

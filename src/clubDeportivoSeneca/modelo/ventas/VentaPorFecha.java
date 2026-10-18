@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class VentaPorFecha {
+public class VentaPorFecha implements java.io.Serializable{
 	
 	private List<VentaServiciosAdicionales> ventas;
 	 

@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.usuario;
 
-public interface Comprador {
+public interface Comprador extends java.io.Serializable {
 	
 	String getLogin();
 	int getPuntosFidelidad();

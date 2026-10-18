@@ -2,7 +2,7 @@ package clubDeportivoSeneca.modelo.partidos;
 
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class EstadVoleibol extends EstadisticaJugadorPartido {
+public class EstadVoleibol extends EstadisticaJugadorPartido implements java.io.Serializable {
 	
 	private int aces;
 	private int bloqueos;

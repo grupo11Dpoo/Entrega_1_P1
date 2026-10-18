@@ -9,7 +9,7 @@ import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.deportes.TenisMesa;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class PartidoIndividual {
+public class PartidoIndividual  implements java.io.Serializable{
 
     private LocalDate fecha;
     private DeporteIndividual disciplina;

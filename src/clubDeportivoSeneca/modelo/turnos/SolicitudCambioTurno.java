@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import clubDeportivoSeneca.modelo.usuario.Empleado;
 
-public class SolicitudCambioTurno {
+public class SolicitudCambioTurno implements java.io.Serializable{
 	 private Empleado empleado;
 	    private Turno turnoActual;
 	    private LocalDate nuevaFecha;

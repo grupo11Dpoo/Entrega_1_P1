@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.deportes;
 
-public class CategoriaEdad {
+public class CategoriaEdad implements java.io.Serializable {
 	
 	private String nombreCategoria;
 	private int edadMin;

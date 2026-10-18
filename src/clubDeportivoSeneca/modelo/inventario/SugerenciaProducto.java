@@ -1,8 +1,8 @@
 package clubDeportivoSeneca.modelo.inventario;
 
 import clubDeportivoSeneca.modelo.usuario.Empleado;
-public class SugerenciaProducto {
-	private final Empleado;
+public class SugerenciaProducto implements java.io.Serializable {
+	private final Empleado empleado;
 	private final String nombre;
 	private final String descripcion;
 	private final TipoSugerencia tipo;

@@ -3,7 +3,7 @@ package clubDeportivoSeneca.modelo.partidos;
 import clubDeportivoSeneca.modelo.competencias.Circuito;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Sancion {
+public class Sancion implements java.io.Serializable {
 	
 	private Jugador jugador;
 	private PartidoConjuntos partidoOrigen;

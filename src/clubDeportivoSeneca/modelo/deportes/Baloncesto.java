@@ -5,7 +5,7 @@ import clubDeportivoSeneca.modelo.partidos.EstadisticaJugadorPartido;
 import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Baloncesto extends DeporteDeConjunto{
+public class Baloncesto extends DeporteDeConjunto implements java.io.Serializable{
 	
 	public static final int PUNTOS_VICTORIA = 2;
 	

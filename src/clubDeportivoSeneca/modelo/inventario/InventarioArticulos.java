@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class InventarioArticulos {
+public class InventarioArticulos implements java.io.Serializable{
 	
 	public static final String UBICACION_TIENDA = "TIENDA";
 	

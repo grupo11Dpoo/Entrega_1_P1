@@ -4,7 +4,7 @@ import java.util.List;
 
 import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 
-public class MesaTenisMesa extends Instalacion {
+public class MesaTenisMesa extends Instalacion implements java.io.Serializable {
 
     public MesaTenisMesa(String id, DeporteIndividual disciplina, boolean techada) throws Exception {
         super(id, disciplina, techada, List.of(2, 4));

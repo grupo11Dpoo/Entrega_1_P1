@@ -15,7 +15,7 @@ import clubDeportivoSeneca.modelo.individual.NivelDeporteIndividual;
 import clubDeportivoSeneca.modelo.individual.NivelJugador;
 import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 
-public class Jugador extends Usuario implements Comprador{
+public class Jugador extends Usuario implements java.io.Serializable, Comprador{
 	
 	private String nombre;
 	private LocalDate fechaNacimiento;
@@ -32,7 +32,7 @@ public class Jugador extends Usuario implements Comprador{
 		super(login, password);
 		
 		if(fechaNacimiento == null || fechaNacimiento.isAfter(LocalDate.now())) {
-			throw new Exception("La fecha de nacimiento es inválida.");
+			throw new IllegalArgumentException("La fecha de nacimiento es inválida.");
 		}
 		
 		this.nombre = nombre;
@@ -98,7 +98,7 @@ public class Jugador extends Usuario implements Comprador{
 	}
 
 	public void setNivelIndivual(NivelDeporteIndividual nivelIndivual) {
-		this.nivelesIndivuales = nivelIndivual;
+		this.nivelesIndivuales.add(nivelIndivual);
 	}
 	
 	public List<Sancion> getSanciones() {
@@ -180,28 +180,27 @@ public class Jugador extends Usuario implements Comprador{
 	
 	
 	
-	public void asignarNivel(DeporteIndividual deporte, NivelJugador nivel) {
-		
-		for(NivelDeporteIndividual nivel : niveles) {
-			if(nivel.getDeporte().equals(deporte)) {
-				niveles.setNivel(nivel);
-			} else {
-				niveles.add(new NivelDeporteIndividual(this, deporte, nivel));
-			}
-		}
-	}
+	public void asignarNivel(DeporteIndividual deporte, NivelJugador nivel) throws Exception{
+		if (deporte == null || nivel == null) {
+            throw new IllegalArgumentException("La disciplina y el nivel son obligatorios.");
+        }
+        for (NivelDeporteIndividual existente : nivelesIndivuales) {
+            if (existente.getDeporte().equals(deporte)) {
+                existente.setNivel(nivel);
+                return;
+            }
+        }
+        nivelesIndivuales.add(new NivelDeporteIndividual(this, deporte, nivel));
+    }
 	
 	public NivelJugador getNivelPorDeporteInd(DeporteIndividual deporte) {
-		
-		for(NivelDeporteIndividual nivel : niveles) {
-			if(nivel.getDeporte().equals(deporte)) {
-				return nivel.getNivel();
-			}
-		}
-		
-		return null;
-	}
-	
+		for (NivelDeporteIndividual nivel : nivelesIndivuales) {
+            if (nivel.getDeporte().equals(deporte)) {
+                return nivel.getNivel();
+            }
+        }
+        return null;
+    }
 	
 	
 	public void agregarSancion(Sancion sancion) throws Exception {
@@ -231,26 +230,3 @@ public class Jugador extends Usuario implements Comprador{
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

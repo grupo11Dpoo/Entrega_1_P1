@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
  
-import club.modelo.inventario.Articulo;
-import club.modelo.inventario.InventarioArticulos;
-import club.modelo.usuarios.Comprador;
+import clubDeportivoSeneca.modelo.inventario.Articulo;
+import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
+import clubDeportivoSeneca.modelo.usuario.Comprador;
 
-public class VentaArticulosDeportivos extends VentaServiciosAdicionales {
+public class VentaArticulosDeportivos extends VentaServiciosAdicionales implements java.io.Serializable{
 	
 	public static final int IVA = 19;
 	

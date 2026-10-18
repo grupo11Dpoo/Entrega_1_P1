@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.deportes;
 
-public abstract class DeporteIndividual extends Deporte {
+public abstract class DeporteIndividual extends Deporte implements java.io.Serializable {
 	
 	protected int maxInstalacionesSimultaneas;
 

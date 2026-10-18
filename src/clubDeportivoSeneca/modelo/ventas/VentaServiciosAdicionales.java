@@ -1,9 +1,9 @@
 package clubDeportivoSeneca.modelo.ventas;
 
 import java.time.LocalDate;
-import club.modelo.usuarios.Comprador;
+import clubDeportivoSeneca.modelo.usuario.Comprador;
 
-public abstract class VentaServiciosAdicionales {
+public abstract class VentaServiciosAdicionales implements java.io.Serializable{
 	
 	public static final int PORCENTAJE_PUNTOS = 2;
 	
@@ -109,7 +109,11 @@ public abstract class VentaServiciosAdicionales {
         int total = calcularTotal();
         int puntosGanados = total * PORCENTAJE_PUNTOS / 100;
         if (puntosRedimidos > 0) {
-            comprador.redimirPuntos(puntosRedimidos);
+        	try {
+                comprador.redimirPuntos(puntosRedimidos);
+            } catch (Exception e) {
+                throw new IllegalStateException("No fue posible redimir los puntos de fidelidad.", e);
+            }
         }
         this.precioTotal = total;
         this.finalizada = true;

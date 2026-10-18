@@ -1,10 +1,10 @@
 package clubDeportivoSeneca.modelo.ventas;
 
-import club.modelo.usuarios.Comprador;
-import club.modelo.usuarios.Empleado;
-import club.modelo.usuarios.Jugador;
+import clubDeportivoSeneca.modelo.usuario.Comprador;
+import clubDeportivoSeneca.modelo.usuario.Empleado;
+import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class DescuentoEmpleado {
+public class DescuentoEmpleado implements java.io.Serializable {
 	public static final int PERSONAL = 15;
     public static final int COMPARTIR = 8;
  

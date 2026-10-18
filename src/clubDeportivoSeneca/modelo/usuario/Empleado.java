@@ -8,8 +8,9 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.inventario.SugerenciaProducto;
 import clubDeportivoSeneca.modelo.inventario.TipoSugerencia;
 import clubDeportivoSeneca.modelo.turnos.Turno;
+import clubDeportivoSeneca.modelo.turnos.SolicitudCambioTurno;
 
-public abstract class Empleado extends Usuario implements Comprador {
+public abstract class Empleado extends Usuario implements java.io.Serializable, Comprador {
 	
 	private String nombre;
 	private String codigoDescuento;
@@ -67,18 +68,15 @@ public abstract class Empleado extends Usuario implements Comprador {
 			}
 		}
 		
-		turnos.add(Turno);
+		turnosSemanales.add(turno);
 	}
 	
 	public void quitarTurno(Turno turno) throws Exception {
 		
-		for(Turno t : turnos) {
-			if(!turnos.contains(turno)) {
-				throw new Exception("El turno que desea eliminar no pertence a este empleado.")
-			}
-		}
-		
-		turnos.remove(turno);
+		if (!turnosSemanales.contains(turno)) {
+            throw new Exception("El turno que desea eliminar no pertenece a este empleado.");
+        }
+        turnosSemanales.remove(turno);
 	}
 	
 	public SolicitudCambioTurno solicitarCambioTurno(Turno turnoActual, LocalDate fecha, LocalTime horaInicio, 

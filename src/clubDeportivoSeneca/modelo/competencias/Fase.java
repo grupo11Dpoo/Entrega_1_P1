@@ -3,7 +3,7 @@ package clubDeportivoSeneca.modelo.competencias;
 import java.util.ArrayList; 
 import java.util.List;
 
-public class Fase {
+public class Fase implements java.io.Serializable{
 	
 	private TipoFase tipo;
 	private String nombre;

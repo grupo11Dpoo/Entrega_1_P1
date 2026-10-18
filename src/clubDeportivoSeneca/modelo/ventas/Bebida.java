@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.ventas;
 
-public class Bebida extends ProductoCafeteria {
+public class Bebida extends ProductoCafeteria implements java.io.Serializable {
 	
 	private final Temperatura temperatura;
 		

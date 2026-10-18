@@ -2,7 +2,7 @@ package clubDeportivoSeneca.modelo.equipos;
 
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Miembro {
+public class Miembro implements java.io.Serializable{
 	
 	private Jugador jugador;
 	private Equipo equipo;
