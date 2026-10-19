@@ -9,6 +9,7 @@ import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class InventarioInstalaciones implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private List<Instalacion> instalaciones;
     private HistorialReservas historial;

@@ -7,6 +7,7 @@ import clubDeportivoSeneca.modelo.partidos.EstadisticaJugadorPartido;
 import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 
 public class PartidoCompetencia extends PartidoConjuntos implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String institucionRival;
 	private String escenario;

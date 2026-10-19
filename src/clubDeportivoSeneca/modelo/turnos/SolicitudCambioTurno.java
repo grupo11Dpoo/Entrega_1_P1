@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import clubDeportivoSeneca.modelo.usuario.Empleado;
 
 public class SolicitudCambioTurno implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	 private Empleado empleado;
 	    private Turno turnoActual;
 	    private LocalDate nuevaFecha;

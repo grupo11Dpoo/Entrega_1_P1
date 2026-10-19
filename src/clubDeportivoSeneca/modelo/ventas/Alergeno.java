@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class Alergeno implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private final String nombre;
 	

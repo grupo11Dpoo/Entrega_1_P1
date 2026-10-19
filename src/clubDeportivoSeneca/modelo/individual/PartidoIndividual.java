@@ -10,6 +10,8 @@ import clubDeportivoSeneca.modelo.deportes.TenisMesa;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class PartidoIndividual  implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
     private LocalDate fecha;
     private DeporteIndividual disciplina;

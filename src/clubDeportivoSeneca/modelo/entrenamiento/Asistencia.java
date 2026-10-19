@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.entrenamiento;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Asistencia implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private Jugador jugador;
     private EstadoAsistencia estado;

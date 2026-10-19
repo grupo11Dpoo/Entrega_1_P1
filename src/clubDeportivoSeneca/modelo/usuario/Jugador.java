@@ -16,6 +16,7 @@ import clubDeportivoSeneca.modelo.individual.NivelJugador;
 import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 
 public class Jugador extends Usuario implements java.io.Serializable, Comprador{
+	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private LocalDate fechaNacimiento;

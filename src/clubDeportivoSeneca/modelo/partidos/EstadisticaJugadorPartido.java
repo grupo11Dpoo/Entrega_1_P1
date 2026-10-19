@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.partidos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public abstract class EstadisticaJugadorPartido implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Jugador jugador;
 	private PartidoConjuntos partido;

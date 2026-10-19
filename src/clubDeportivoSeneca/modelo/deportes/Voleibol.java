@@ -6,6 +6,7 @@ import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Voleibol extends DeporteDeConjunto implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	public static final int PUNTOS_VICTORIA = 2;
 	

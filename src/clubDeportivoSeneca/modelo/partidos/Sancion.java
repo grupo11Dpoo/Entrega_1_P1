@@ -4,6 +4,7 @@ import clubDeportivoSeneca.modelo.competencias.Circuito;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Sancion implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Jugador jugador;
 	private PartidoConjuntos partidoOrigen;
@@ -12,7 +13,6 @@ public class Sancion implements java.io.Serializable {
 	private boolean cumplida;
 	
 	public Sancion(Jugador jugador, PartidoConjuntos partidoOrigen, Circuito circuito, String motivo) {
-
 		this.jugador = jugador;
 		this.partidoOrigen = partidoOrigen;
 		this.circuito = circuito;

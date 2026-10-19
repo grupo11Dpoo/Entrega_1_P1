@@ -7,6 +7,7 @@ import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 
 public class TorneoCerros extends Circuito implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private EstadisticasLiga estadisticasLiga;
 	private List<PartidoCompetencia> partidosContados;
@@ -65,12 +66,6 @@ public class TorneoCerros extends Circuito implements java.io.Serializable{
 		estadisticasLiga.registrarResultado(equipoB, puntos[1]);
 	}
 
-	//public List<EstadisticasLiga.FilaTabla> calcularTablaPosiciones(){
-		
-		//return estadisticasLiga.getTabla();
-	//}
-	
-	//TODO:
 	public List<String> calcularClasificacion() {
 		List<String> resultado = new ArrayList<>();
         if (estadisticasLiga != null) {

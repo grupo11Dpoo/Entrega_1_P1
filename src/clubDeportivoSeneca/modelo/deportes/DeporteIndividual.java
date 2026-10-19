@@ -1,6 +1,7 @@
 package clubDeportivoSeneca.modelo.deportes;
 
 public abstract class DeporteIndividual extends Deporte implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	protected int maxInstalacionesSimultaneas;
 

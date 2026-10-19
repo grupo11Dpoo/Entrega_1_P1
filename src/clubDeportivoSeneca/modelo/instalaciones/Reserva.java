@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Reserva implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private Jugador jugador;
     private Instalacion instalacion;

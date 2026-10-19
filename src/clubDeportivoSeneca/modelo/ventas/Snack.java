@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Snack extends ProductoCafeteria implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private final List<Alergeno>alergenos;
 	

@@ -10,6 +10,7 @@ import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
 import clubDeportivoSeneca.modelo.usuario.Comprador;
 
 public class VentaArticulosDeportivos extends VentaServiciosAdicionales implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	public static final int IVA = 19;
 	

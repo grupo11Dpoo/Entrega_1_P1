@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fase implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private TipoFase tipo;
 	private String nombre;

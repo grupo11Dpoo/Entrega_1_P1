@@ -10,6 +10,7 @@ import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 import clubDeportivoSeneca.modelo.entrenamiento.EstadoAsistencia;
 
 public class Entrenador extends Empleado implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private List<Entrenamiento> entrenamientos;
 

@@ -1,6 +1,7 @@
 package clubDeportivoSeneca.modelo.ventas;
 
 public class Bebida extends ProductoCafeteria implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private final Temperatura temperatura;
 		

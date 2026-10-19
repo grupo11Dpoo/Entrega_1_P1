@@ -4,6 +4,7 @@ import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class NivelDeporteIndividual implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private Jugador jugador;
     private DeporteIndividual deporte;

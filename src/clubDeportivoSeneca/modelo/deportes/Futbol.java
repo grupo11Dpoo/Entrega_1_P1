@@ -6,6 +6,7 @@ import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Futbol extends DeporteDeConjunto implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	public static final int PUNTOS_VICTORIA = 3;
 	public static final int PUNTOS_EMPATE = 1;

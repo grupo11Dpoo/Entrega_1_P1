@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.individual;
 import java.time.LocalDate;
 
 public class RegistroRanking implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private LocalDate fecha;
     private int puntaje;

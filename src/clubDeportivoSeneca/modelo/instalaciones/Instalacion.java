@@ -7,6 +7,7 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 
 public abstract class Instalacion implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private String id;
     private DeporteIndividual disciplina;

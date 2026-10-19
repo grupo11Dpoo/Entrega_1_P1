@@ -1,6 +1,7 @@
 package clubDeportivoSeneca.modelo.entrenamiento;
 
 public class EvaluacionDesempeno implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private int nota;
     private String comentario;

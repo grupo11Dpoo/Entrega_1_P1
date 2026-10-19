@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.equipos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Miembro implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Jugador jugador;
 	private Equipo equipo;

@@ -5,6 +5,8 @@ import clubDeportivoSeneca.modelo.usuario.Empleado;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class DescuentoEmpleado implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	public static final int PERSONAL = 15;
     public static final int COMPARTIR = 8;
  

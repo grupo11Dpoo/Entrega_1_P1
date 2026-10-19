@@ -5,6 +5,7 @@ import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public abstract class DeporteDeConjunto extends Deporte implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private int minJugadoresHabilitados;
 	private boolean permiteEmpate;

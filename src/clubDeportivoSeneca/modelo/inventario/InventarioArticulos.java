@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class InventarioArticulos implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	public static final String UBICACION_TIENDA = "TIENDA";
 	

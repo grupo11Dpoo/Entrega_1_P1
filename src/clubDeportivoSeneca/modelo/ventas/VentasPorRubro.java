@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class VentasPorRubro implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private final List<VentaServiciosAdicionales> ventas;
 	

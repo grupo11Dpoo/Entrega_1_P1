@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EstadisticasLiga implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Map<String, Integer> puntos;
 	private Map<String, Integer> partidosJugados;

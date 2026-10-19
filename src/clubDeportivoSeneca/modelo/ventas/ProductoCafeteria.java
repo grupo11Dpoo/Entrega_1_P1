@@ -2,6 +2,8 @@ package clubDeportivoSeneca.modelo.ventas;
 import java.util.Objects;
 
 public abstract class ProductoCafeteria implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private final String nombre;
 	private int precio;
 	

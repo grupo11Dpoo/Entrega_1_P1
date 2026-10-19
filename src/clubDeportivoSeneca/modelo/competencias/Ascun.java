@@ -12,6 +12,7 @@ import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 
 public class Ascun extends Circuito implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private List<Fase> fases;
 

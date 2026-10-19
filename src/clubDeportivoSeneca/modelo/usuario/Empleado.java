@@ -11,6 +11,7 @@ import clubDeportivoSeneca.modelo.turnos.Turno;
 import clubDeportivoSeneca.modelo.turnos.SolicitudCambioTurno;
 
 public abstract class Empleado extends Usuario implements java.io.Serializable, Comprador {
+	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private String codigoDescuento;

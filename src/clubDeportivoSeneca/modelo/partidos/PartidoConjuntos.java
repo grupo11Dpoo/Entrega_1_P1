@@ -10,6 +10,7 @@ import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public abstract class PartidoConjuntos implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private LocalDate fecha;
 	private DeporteDeConjunto deporte;
@@ -26,8 +27,8 @@ public abstract class PartidoConjuntos implements java.io.Serializable{
 			throw new Exception("Fecha, deporte y equipo local son obligatorios.");
 		}
 		
-		if(!deporte.equals("Fútbol") || !deporte.equals("Baloncesto") || !deporte.equals("Voleibol")) {
-			throw new Exception("El deporte " + deporte + " no es válido.");
+		if (!List.of("Fútbol", "Baloncesto", "Voleibol").contains(deporte.getNombre())) {
+            throw new Exception("El deporte " + deporte + " no es válido.");
 		}
 		
 		if(!equipoLocal.getDeporte().equals(deporte)) {
@@ -49,11 +50,9 @@ public abstract class PartidoConjuntos implements java.io.Serializable{
 	}
 
 	public void setFecha(LocalDate fecha) throws Exception {
-		
 		if(fecha == null) {
 			throw new Exception("Fecha nula.");
 		}
-		
 		this.fecha = fecha;
 	}
 
@@ -94,22 +93,17 @@ public abstract class PartidoConjuntos implements java.io.Serializable{
 	}
 	
 	public void registrarMarcador(int local, int visitante) throws Exception {
-		
 		partidoAbierto();
-		
 		if(!deporte.isPermiteEmpate() && local == visitante) {
 			throw new Exception("El deporte" + deporte + " no permite empates.");
 		}
-		
 		this.marcadorLocal = local;
 		this.marcadorVisitante = visitante;
 		this.marcadorRegistrado = true;
 	}
 	
 	public void registrarEstadistica(EstadisticaJugadorPartido estadistica) throws Exception {
-		
 		partidoAbierto();
-		
 		if(estadistica == null || estadistica.getPartido() != this) {
 			throw new Exception("La estadística no corresponde a este partido.");
 		}
@@ -131,9 +125,7 @@ public abstract class PartidoConjuntos implements java.io.Serializable{
 	}
 	
 	public void finalizarPartido() throws Exception {
-		
 		partidoAbierto();
-		
 		if(!marcadorRegistrado) {
 			throw new Exception("Falta registrar el marcador final.");
 		}
@@ -176,7 +168,6 @@ public abstract class PartidoConjuntos implements java.io.Serializable{
 	}
 	
 	public EstadisticaJugadorPartido getEstadisticasJugador(Jugador jugador) {
-		
 		for(EstadisticaJugadorPartido estadistica : estadisticas) {
 			if(estadistica.getJugador().equals(jugador)) {
 				return estadistica;

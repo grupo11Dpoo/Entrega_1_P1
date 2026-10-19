@@ -25,6 +25,7 @@ import clubDeportivoSeneca.modelo.instalaciones.Reserva;
 import clubDeportivoSeneca.sistema.ClubDeportivoSeneca;
 
 public class Administrador extends Usuario implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private ClubDeportivoSeneca cds;
 	
@@ -102,29 +103,55 @@ public class Administrador extends Usuario implements java.io.Serializable {
         return cds.getInventarioArticulos().getStock();
     }
 	
-	public List<Reserva> verHistorialReservas() {
-		return cds().getInventarioInstalaciones().getHistorial().getReservas();
+	public void verHistorialReservas() {
+        if (cds == null) return;
+        cds.getInventarioInstalaciones().getHistorial().getReservas().forEach(System.out::println);
 	}
 		
-	public List<PartidoInterno> verHistorialPartidos() {
-        return cds().getPartidosInternos();
-    }
+	public void verHistorialPartidos() {
+        if (cds == null) return;
+        cds.getPartidosInternos().forEach(System.out::println);
+        cds.getPartidosCompetencia().forEach(System.out::println);
+        cds.getPartidosIndividuales().forEach(System.out::println);
+	}
  
     public List<PartidoIndividual> verHistorialPartidosIndividuales() {
         return cds().getPartidosIndividuales();
     }
- 
-    public List<Entrenamiento> verHistorialEntrenamientos() {
-        return cds().getEntrenamientos();
-    }
+    
+	public void verHistorialEntrenamientos() {
+        if (cds == null) return;
+        cds.getEntrenamientos().forEach(System.out::println);
+	}
 	
     //Reportes
-	public List<VentaServiciosAdicionales> reporteVentas() {
-        return cds().getVentas();
-    }
+	
+	public void reporteVentas() {
+        if (cds == null) return;
+        java.util.Map<clubDeportivoSeneca.modelo.ventas.Rubro, Integer> totales = new java.util.EnumMap<>(clubDeportivoSeneca.modelo.ventas.Rubro.class);
+        for (clubDeportivoSeneca.modelo.ventas.VentaServiciosAdicionales venta : cds.getVentas()) {
+            if (venta.isFinalizada()) totales.merge(venta.getRubro(), venta.getPrecioTotal(), Integer::sum);
+        }
+        for (clubDeportivoSeneca.modelo.ventas.Rubro rubro : clubDeportivoSeneca.modelo.ventas.Rubro.values())
+            System.out.println(rubro + ": $" + totales.getOrDefault(rubro, 0));
+	}
+	
+	public void reporteAsistencia() {
+        if (cds == null) return;
+        for (clubDeportivoSeneca.modelo.entrenamiento.Entrenamiento entrenamiento : cds.getEntrenamientos()) {
+            System.out.println("Entrenamiento " + entrenamiento.getFecha() + " - " + entrenamiento.getAsistencias().size() + " registros de asistencia");
+        }
+	}
+	
+	public void reporteResultados() {
+        if (cds == null) return;
+        cds.getPartidosInternos().forEach(p -> System.out.println(p.getFecha() + " | " + p.getEquipoLocal().getNombre() + " vs " + p.getEquipoVisitante().getNombre() + " | " + p.getMarcadorLocal() + "-" + p.getMarcadorVisitante()));
+        cds.getPartidosCompetencia().forEach(p -> System.out.println(p.getFecha() + " | " + p.getEquipoLocal().getNombre() + " vs " + p.getInstitucionRival() + " | " + p.getMarcadorLocal() + "-" + p.getMarcadorVisitante()));
+	}
 		
 	public void reporteRankings() {
-		cds.getRankings();
+        if (cds == null) return;
+        cds.getRankings().forEach(System.out::println);
 	}
 
 }

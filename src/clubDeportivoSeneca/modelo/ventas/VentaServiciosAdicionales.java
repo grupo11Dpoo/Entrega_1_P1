@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import clubDeportivoSeneca.modelo.usuario.Comprador;
 
 public abstract class VentaServiciosAdicionales implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	public static final int PORCENTAJE_PUNTOS = 2;
 	

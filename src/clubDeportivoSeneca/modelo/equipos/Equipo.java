@@ -9,6 +9,7 @@ import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class Equipo implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private DeporteDeConjunto deporte;

@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.inventario;
 import java.util.Objects;
 
 public class Articulo implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String categoria;
 	private int precio;

@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.instalaciones;
 import java.time.LocalTime;
 
 public class HorarioBloque implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     private LocalTime horaInicio;
     private LocalTime horaFin;

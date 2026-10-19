@@ -3,6 +3,7 @@ package clubDeportivoSeneca.modelo.partidos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class EstadFutbol extends EstadisticaJugadorPartido implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private int goles;
 	private int asistencias;
@@ -11,7 +12,6 @@ public class EstadFutbol extends EstadisticaJugadorPartido implements java.io.Se
 	
 	public EstadFutbol(Jugador jugador, PartidoConjuntos partido) throws Exception {
 		super(jugador, partido);
-		
 		this.goles = 0;
 		this.asistencias = 0;
 		this.amarillas = 0;
@@ -51,14 +51,12 @@ public class EstadFutbol extends EstadisticaJugadorPartido implements java.io.Se
 	}
 
 	public boolean generaSuspension() {
-		
 		return amarillas >= 2 || rojas >= 1;
 		
 	}
 
 	@Override
 	public String getResumen() {
-		
 		return "Resumen de " + getJugador().getNombre() + ": " + goles + " goles, " + asistencias
 				+ " asistencias, " + amarillas + " tarjetas amarillas, " + rojas + " tarjetas rojas.";
 	}

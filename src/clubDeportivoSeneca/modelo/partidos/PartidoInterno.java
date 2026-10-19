@@ -7,20 +7,18 @@ import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 
 public class PartidoInterno extends PartidoConjuntos implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Equipo equipoVisitante;
 
 	public PartidoInterno(LocalDate fecha, DeporteDeConjunto deporte, Equipo equipoLocal, Equipo equipoVisitante) throws Exception {
-		
 		super(fecha, deporte, equipoLocal);
-		
 		if(equipoVisitante == null) {
 			throw new Exception("Equipo visitante nulo.");
 		}
 		
-		validarRequisitos();
-		
 		this.equipoVisitante = equipoVisitante;
+		validarRequisitos();
 	}
 
 	public Equipo getEquipoVisitante() {
@@ -33,7 +31,6 @@ public class PartidoInterno extends PartidoConjuntos implements java.io.Serializ
 	
     @Override
 	public void validarRequisitos() throws Exception {
-		
     	Equipo local = getEquipoLocal();
     	
     	if(local.equals(equipoVisitante)) {
@@ -69,9 +66,7 @@ public class PartidoInterno extends PartidoConjuntos implements java.io.Serializ
     }
     
 	public Equipo getGanador() throws Exception {
-		
 		ResultadoPartido resultado = getResultadoLocal();
-		
 		if(resultado.equals(ResultadoPartido.VICTORIA_LOCAL)) {
 			return getEquipoLocal();
 		} else if(resultado.equals(ResultadoPartido.DERROTA_LOCAL)) {

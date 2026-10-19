@@ -3,10 +3,10 @@ package clubDeportivoSeneca.modelo.partidos;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public class EstadBaloncesto extends EstadisticaJugadorPartido implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private int puntos;
 	private int rebotes;
-	
 	
 	public EstadBaloncesto(Jugador jugador, PartidoConjuntos partido) throws Exception {
 		super(jugador, partido);
@@ -14,13 +14,9 @@ public class EstadBaloncesto extends EstadisticaJugadorPartido implements java.i
 		this.puntos = 0;
 		this.rebotes = 0;
 	}
-
-
 	public int getPuntos() {
 		return puntos;
 	}
-
-
 	public int getRebotes() {
 		return rebotes;
 	}
@@ -30,9 +26,7 @@ public class EstadBaloncesto extends EstadisticaJugadorPartido implements java.i
 		if(cantidad < 0) {
 			throw new Exception("La cantidad de puntos no puede ser negativa.");
 		}
-		
 		puntos += cantidad;
-		
 	}
 	
 	public void registrarRebote() {
@@ -46,7 +40,6 @@ public class EstadBaloncesto extends EstadisticaJugadorPartido implements java.i
 	
 	@Override
 	public String getResumen() {
-		
 		return "Resumen de " + getJugador().getNombre() + ": " + puntos + " puntos, " + rebotes + " rebotes.";
 	}
 
