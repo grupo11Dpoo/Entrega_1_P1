@@ -44,10 +44,6 @@ public class EstadisticasLiga implements java.io.Serializable {
 		return partidosJugados.get(nombreEquipo);
 	}
 	
-	//public List<...> getTabla(){
-		//TODO:
-	//}
-
 }
 
 
