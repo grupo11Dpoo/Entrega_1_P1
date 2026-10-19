@@ -95,7 +95,7 @@ public class Administrador extends Usuario implements java.io.Serializable {
 	
 	//Consultas
 	public InventarioInstalaciones verInventarioInstalaciones(InventarioInstalaciones instalaciones) {
-		return cds().getInventarioInstalaciones().getInstalaciones();
+        return instalaciones;
 	}
 	
 	public Map<String, Map<Articulo, Integer>> verInventarioArticulos() {
@@ -128,31 +128,4 @@ public class Administrador extends Usuario implements java.io.Serializable {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

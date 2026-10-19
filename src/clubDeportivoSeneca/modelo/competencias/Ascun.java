@@ -58,37 +58,23 @@ public class Ascun extends Circuito implements java.io.Serializable {
 		fase.agregarPartido(partido);
 	}
 	
-	public List<String> calcularClasificados(Fase fase) throws Exception {
-		
-		if (!fases.contains(fase)) {
-	        throw new Exception("La fase no pertenece a este circuito.");
-	    }
-
-	    if (fase.getTipo() == TipoFase.GRUPOS) {
-	        return clasificarGrupos(fase);
-	   
-	    } else {
-	        return ganadoresEliminacion(fase);
-	    }
+	public List<String> calcularClasificados(Fase fase) {
+        return calcularClasificados(fase, 2);
 	}
 	
 	public List<String> calcularClasificados(Fase fase, int cupos) {
-		List<String> todos = calcularClasificados(fase);
-	    int cantidad = cupos;
-
-	    if (cupos > todos.size()) {
-	        cantidad = todos.size();
-	    }
-
-	    return new ArrayList<>(todos.subList(0, cantidad));
+        if (fase == null || cupos <= 0) return new ArrayList<>();
+        return clasificarGrupos(fase).stream().limit(cupos).toList();
 	}
 
 	public String desdempatePorEnfrentamiento(String a, String b) {
-		
-		int pa = puntosEntre(a, Set.of(b), getPartidos());
-        int pb = puntosEntre(b, Set.of(a), getPartidos());
-        if (pa > pb) return a;
-        if (pb > pa) return b;
+        for (Fase fase : fases) for (PartidoCompetencia p : fase.getPartidos()) {
+            if (p.isFinalizado() && ((p.getEquipoLocal().getNombre().equals(a) && p.getInstitucionRival().equals(b)) ||
+                    (p.getEquipoLocal().getNombre().equals(b) && p.getInstitucionRival().equals(a)))) {
+                if (p.getMarcadorLocal() > p.getMarcadorVisitante()) return p.getEquipoLocal().getNombre();
+                if (p.getMarcadorLocal() < p.getMarcadorVisitante()) return p.getInstitucionRival();
+            }
+        }
         return null;
 	}
 	
@@ -101,6 +87,20 @@ public class Ascun extends Circuito implements java.io.Serializable {
 	        }
 	    }
 	    return new ArrayList<>();
+	}
+	
+	public List<String> clasificarGrupos(Fase fase) {
+        if (fase == null) return new ArrayList<>();
+        Map<String, Integer> puntos = new HashMap<>();
+        for (PartidoCompetencia p : fase.getPartidos()) {
+            if (!p.isFinalizado()) continue;
+            String local = p.getEquipoLocal().getNombre(), rival = p.getInstitucionRival();
+            int[] pts = calcularPuntos(p);
+            puntos.merge(local, pts[0], Integer::sum); puntos.merge(rival, pts[1], Integer::sum);
+        }
+        List<String> equipos = new ArrayList<>(puntos.keySet());
+        equipos.sort((a,b) -> Integer.compare(puntos.get(b), puntos.get(a)));
+        return equipos;
 	}
 	
 	public List<String> ganadoresEliminacion(Fase fase) throws Exception {
@@ -125,6 +125,14 @@ public class Ascun extends Circuito implements java.io.Serializable {
         }
         return ganadores;
 	}
+	
+	private int[] calcularPuntos(PartidoCompetencia partido) {
+        try {
+            return getDeporte().calcularPuntosLiga(partido.getMarcadorLocal(), partido.getMarcadorVisitante());
+        } catch (Exception e) {
+            throw new IllegalStateException("No se pudo calcular la puntuación del partido.", e);
+        }
+    }
 	
 	public int puntosEntre(String equipo, Set<String> grupo, List<PartidoCompetencia> partidos) throws Exception {
 		int total = 0;
