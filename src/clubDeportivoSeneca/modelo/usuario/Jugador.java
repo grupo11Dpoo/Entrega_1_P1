@@ -11,12 +11,13 @@ import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.equipos.Miembro;
 import clubDeportivoSeneca.modelo.partidos.Sancion;
+import clubDeportivoSeneca.modelo.torneos.BonoDescuento;
 import clubDeportivoSeneca.modelo.individual.NivelDeporteIndividual;
 import clubDeportivoSeneca.modelo.individual.NivelJugador;
 import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 
+@SuppressWarnings("serial")
 public class Jugador extends Usuario implements java.io.Serializable, Comprador{
-	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private LocalDate fechaNacimiento;
@@ -29,7 +30,12 @@ public class Jugador extends Usuario implements java.io.Serializable, Comprador{
 	private List<NivelDeporteIndividual> nivelesIndivuales;
 	private List<Sancion> sanciones;
 	
+	//para proyecto 2
+	private TipoJugador tipo = TipoJugador.EXTERNO;
+	private List<BonoDescuento> bonos = new ArrayList<BonoDescuento>();
+	
 	public Jugador(String login, String password, String nombre, LocalDate fechaNacimiento) {
+		
 		super(login, password);
 		
 		if(fechaNacimiento == null || fechaNacimiento.isAfter(LocalDate.now())) {
@@ -195,6 +201,7 @@ public class Jugador extends Usuario implements java.io.Serializable, Comprador{
     }
 	
 	public NivelJugador getNivelPorDeporteInd(DeporteIndividual deporte) {
+		
 		for (NivelDeporteIndividual nivel : nivelesIndivuales) {
             if (nivel.getDeporte().equals(deporte)) {
                 return nivel.getNivel();
@@ -216,6 +223,7 @@ public class Jugador extends Usuario implements java.io.Serializable, Comprador{
     public boolean estaSuspendido(Circuito circuito) {
 		
 		for(Sancion sancion : sanciones) {
+			
 			if(sancion.estaVigente() && sancion.aplicaCircuito(circuito)) {
 				return true;
 			}
@@ -228,6 +236,31 @@ public class Jugador extends Usuario implements java.io.Serializable, Comprador{
     
 	public boolean esEntrenador() {
 		return perfilEmpleado instanceof Empleado;
+	}
+	
+	//para proyecto2	
+	public TipoJugador getTipo() {
+		return tipo;
+	}
+	
+	public void setTipo(TipoJugador tipo) throws Exception {
+	    
+		if (tipo == null) {
+	    	throw new Exception("El tipo es obligatorio.");
+	    }
+	    this.tipo = tipo;
+	}
+	
+	public List<BonoDescuento> getBonos() {
+		return bonos;
+	}
+	
+	public void agregarBono(BonoDescuento bono) throws Exception {
+	   
+		if (bono == null) {
+	    	throw new Exception("El bono es obligatorio.");
+	    }
+	    bonos.add(bono);
 	}
 
 }
