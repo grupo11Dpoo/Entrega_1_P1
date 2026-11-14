@@ -57,5 +57,9 @@ public class BonoDescuento implements Serializable {
     	this.redimido = true;
     	
     }
+    
+    public boolean estaVigente() {
+    	return !LocalDate.now().isAfter(vigenteHasta);
+    }
 
 }

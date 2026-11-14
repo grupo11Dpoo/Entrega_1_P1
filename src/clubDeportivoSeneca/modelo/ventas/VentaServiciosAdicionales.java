@@ -1,10 +1,14 @@
 package clubDeportivoSeneca.modelo.ventas;
 
 import java.time.LocalDate;
-import clubDeportivoSeneca.modelo.usuario.Comprador;
 
+import clubDeportivoSeneca.modelo.torneos.BonoDescuento;
+import clubDeportivoSeneca.modelo.usuario.Comprador;
+import clubDeportivoSeneca.modelo.usuario.Empleado;
+import clubDeportivoSeneca.modelo.usuario.Jugador;
+
+@SuppressWarnings("serial")
 public abstract class VentaServiciosAdicionales implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	public static final int PORCENTAJE_PUNTOS = 2;
 	
@@ -14,6 +18,7 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
 	private int puntosRedimidos;
 	private int precioTotal;
 	private boolean finalizada;
+	private BonoDescuento bono;
 	
 	protected VentaServiciosAdicionales(LocalDate fecha, Comprador comprador, Rubro rubro) {
 		if (fecha == null) {
@@ -31,6 +36,7 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
         this.puntosRedimidos = 0;
         this.precioTotal = 0;
         this.finalizada = false;
+        this.bono = null;
 	}
 	
 	public LocalDate getFecha() {
@@ -57,6 +63,10 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
 		return finalizada;
 	}
 	
+	public BonoDescuento getBono() {
+		return bono;
+	}
+	
 	public abstract int calcularSubtotal();
 	
 	protected abstract int calcularTotalSinPuntos();
@@ -65,6 +75,12 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
 	
 	public void aplicarPuntos(int puntos) {
 		validarNoFinalizada();
+		
+		// para proyecto2
+		if (bono != null && puntos > 0) {
+			throw new IllegalStateException("No se pueden redimir puntos en una venta con bono.");
+		}
+		
 		if (puntos < 0) {
             throw new IllegalArgumentException("Los puntos no pueden ser negativos.");
         }
@@ -104,6 +120,11 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
         if (puntosRedimidos > calcularTotalSinPuntos()) {
             throw new IllegalStateException("Los puntos redimidos superan el total de la venta.");
         }
+        
+        //proyecto2
+        if(bono != null) {
+            validarBono(bono);
+        }
     }
     
     protected void ejecutarCierre() {
@@ -116,10 +137,79 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
                 throw new IllegalStateException("No fue posible redimir los puntos de fidelidad.", e);
             }
         }
+        
+        //proyecto2
+        if (bono != null) {
+            try {
+                bono.redimir();
+            } catch (Exception e) {
+                throw new IllegalStateException("No fue posible redimir el bono.", e);
+            }
+        }
+        //
+        
         this.precioTotal = total;
         this.finalizada = true;
         if (puntosGanados > 0) {
             comprador.acumularPuntos(puntosGanados);
         }
     }
+    
+    //cambio para proyecto2
+    protected Jugador obtenerJugador() {
+        Comprador comprador = getComprador();
+        if (comprador instanceof Jugador) {
+            return (Jugador) comprador;
+        }
+        if (comprador instanceof Empleado) {
+            return ((Empleado) comprador).getPerfilJugador();
+        }
+        return null;
+    }
+    
+    //nuevas funcipnes proyecto2
+    protected boolean hayDescuentoDeEmpleado() {
+		return false;
+	}
+    
+    private void validarBono(BonoDescuento bono) {
+		Jugador jugador = obtenerJugador();
+		if (jugador == null || !jugador.getBonos().contains(bono)) {
+			throw new IllegalStateException("El bono no pertenece al comprador.");
+		}
+		if (bono.isRedimido()) {
+			throw new IllegalStateException("El bono ya fue redimido.");
+		}
+		if (!bono.estaVigente()) {
+			throw new IllegalStateException("El bono ya no está vigente.");
+		}
+	}
+    
+    public void aplicarBono(BonoDescuento bono) {
+		validarNoFinalizada();
+		if (bono == null) {
+			throw new IllegalArgumentException("El bono no puede ser nulo.");
+		}
+		if (puntosRedimidos > 0) {
+			throw new IllegalStateException("El bono no se combina con la redención de puntos.");
+		}
+		if (hayDescuentoDeEmpleado()) {
+			throw new IllegalStateException("El bono no se combina con el descuento de empleado.");
+		}
+		validarBono(bono);
+		this.bono = bono;
+	}
+    
+    public void quitarBono() {
+		validarNoFinalizada();
+		this.bono = null;
+	}
+    
+    public int calcularDescuentoBono() {
+		if (bono == null) {
+			return 0;
+		}
+		return (int) Math.round(calcularSubtotal() * bono.getPorcentaje());
+	}
+
 }

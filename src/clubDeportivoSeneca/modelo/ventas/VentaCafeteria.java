@@ -1,6 +1,6 @@
 package clubDeportivoSeneca.modelo.ventas;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -11,11 +11,10 @@ import java.util.Set;
  
 import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 import clubDeportivoSeneca.modelo.usuario.Comprador;
-import clubDeportivoSeneca.modelo.usuario.Empleado;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
+@SuppressWarnings("serial")
 public class VentaCafeteria extends VentaServiciosAdicionales implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	public static final int IMPUESTO = 8;
     public static final int PROPINA_SUGERIDA = 10;
@@ -109,7 +108,7 @@ public class VentaCafeteria extends VentaServiciosAdicionales implements java.io
     }
     
     public int calcularImpuesto() {
-        return calcularSubtotal() * IMPUESTO / 100;
+        return (calcularSubtotal() - calcularDescuentoBono()) * IMPUESTO / 100;
     }
     
     public int calcularPropina() {
@@ -118,7 +117,7 @@ public class VentaCafeteria extends VentaServiciosAdicionales implements java.io
  
     @Override
     protected int calcularTotalSinPuntos() {
-        return calcularSubtotal() + calcularImpuesto() + calcularPropina();
+        return calcularSubtotal() - calcularDescuentoBono() + calcularImpuesto() + calcularPropina();
     }
  
     @Override
@@ -164,15 +163,5 @@ public class VentaCafeteria extends VentaServiciosAdicionales implements java.io
         return false;
     }
     
-    private Jugador obtenerJugador() {
-        Comprador comprador = getComprador();
-        if (comprador instanceof Jugador) {
-            return (Jugador) comprador;
-        }
-        if (comprador instanceof Empleado) {
-            return ((Empleado) comprador).getPerfilJugador();
-        }
-        return null;
-    }
 
 }

@@ -9,8 +9,8 @@ import clubDeportivoSeneca.modelo.inventario.Articulo;
 import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
 import clubDeportivoSeneca.modelo.usuario.Comprador;
 
+@SuppressWarnings("serial")
 public class VentaArticulosDeportivos extends VentaServiciosAdicionales implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	public static final int IVA = 19;
 	
@@ -33,6 +33,13 @@ public class VentaArticulosDeportivos extends VentaServiciosAdicionales implemen
     
     public void setDescuento(DescuentoEmpleado descuento) {
         validarNoFinalizada();
+        
+        //proyecto2
+        if (descuento != null && getBono() != null) {
+            throw new IllegalStateException("El descuento de empleado no se combina con un bono.");
+        }
+        //
+        
         if (descuento != null && getPuntosRedimidos() > 0) {
             throw new IllegalStateException("El descuento de empleado no se combina con la redención de puntos.");
         }
@@ -84,12 +91,12 @@ public class VentaArticulosDeportivos extends VentaServiciosAdicionales implemen
     }
     
     public int calcularIva() {
-        return (calcularSubtotal() - calcularDescuento()) * IVA / 100;
+        return (calcularSubtotal() - calcularDescuento() - calcularDescuentoBono()) * IVA / 100;
     }
     
     @Override
     protected int calcularTotalSinPuntos() {
-        return calcularSubtotal() - calcularDescuento() + calcularIva();
+        return calcularSubtotal() - calcularDescuento() - calcularDescuentoBono() + calcularIva();
     }
  
     @Override
@@ -126,5 +133,11 @@ public class VentaArticulosDeportivos extends VentaServiciosAdicionales implemen
             inventario.descontar(linea.getKey(), linea.getValue());
         }
         ejecutarCierre();
+    }
+    
+    //para proyecto2
+    @Override
+    protected boolean hayDescuentoDeEmpleado() {
+        return descuento != null;
     }
 }
