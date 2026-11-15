@@ -3,10 +3,7 @@ package clubDeportivoSeneca.consola;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 import clubDeportivoSeneca.modelo.competencias.Ascun;
 import clubDeportivoSeneca.modelo.competencias.Circuito;
@@ -38,28 +35,21 @@ import clubDeportivoSeneca.modelo.instalaciones.MesaTenisMesa;
 import clubDeportivoSeneca.modelo.instalaciones.Modalidad;
 import clubDeportivoSeneca.modelo.instalaciones.Reserva;
 import clubDeportivoSeneca.modelo.inventario.Articulo;
-import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
-import clubDeportivoSeneca.modelo.inventario.SugerenciaProducto;
 import clubDeportivoSeneca.modelo.inventario.TipoSugerencia;
-import clubDeportivoSeneca.modelo.partidos.PartidoInterno;
 import clubDeportivoSeneca.modelo.turnos.SolicitudCambioTurno;
 import clubDeportivoSeneca.modelo.turnos.Turno;
 import clubDeportivoSeneca.modelo.usuario.Administrador;
 import clubDeportivoSeneca.modelo.usuario.Comprador;
 import clubDeportivoSeneca.modelo.usuario.Empleado;
 import clubDeportivoSeneca.modelo.usuario.Entrenador;
-import clubDeportivoSeneca.modelo.usuario.Fisioterapeuta;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 import clubDeportivoSeneca.modelo.usuario.Usuario;
 import clubDeportivoSeneca.modelo.ventas.Alergeno;
 import clubDeportivoSeneca.modelo.ventas.Bebida;
-import clubDeportivoSeneca.modelo.ventas.Periodo;
-import clubDeportivoSeneca.modelo.ventas.ProductoCafeteria;
 import clubDeportivoSeneca.modelo.ventas.Snack;
 import clubDeportivoSeneca.modelo.ventas.Temperatura;
 import clubDeportivoSeneca.modelo.ventas.VentaArticulosDeportivos;
 import clubDeportivoSeneca.modelo.ventas.VentaCafeteria;
-import clubDeportivoSeneca.modelo.ventas.VentaServiciosAdicionales;
 import clubDeportivoSeneca.persistencia.ArchivoPlano;
 import clubDeportivoSeneca.sistema.ClubDeportivoSeneca;
 
@@ -127,25 +117,44 @@ public abstract class ConsolaBase {
 
     protected void registrarResultadoIndividual() throws Exception {
         List<PartidoIndividual> partidos = club.getPartidosIndividuales();
-        if (partidos.isEmpty()) 
-        	throw new IllegalStateException("No hay partidos individuales.");
-        for(int i=0;i<partidos.size();i++) { PartidoIndividual p=partidos.get(i); System.out.println((i+1)+". "+p.getFecha()+" | "+p.getJugador1().getLogin()+" vs "+p.getJugador2().getLogin()+" | "+p.getDisciplina().getNombre()+" | finalizado="+p.isFinalizado()); }
-        PartidoIndividual p = partidos.get(indice("Número de partido",partidos.size()));
-        System.out.println("Ganador: 1. "+p.getJugador1().getLogin()+"  2. "+p.getJugador2().getLogin());
-        Jugador ganador = leer("Opción: ").equals("1") ? p.getJugador1() : p.getJugador2();
-        if (p.getDisciplina() instanceof TenisMesa) {
-            EstadisticaTMesa e1 = new EstadisticaTMesa(p.getJugador1(), entero("Sets jugador 1: "), entero("Puntos jugador 1: "));
-            EstadisticaTMesa e2 = new EstadisticaTMesa(p.getJugador2(), entero("Sets jugador 2: "), entero("Puntos jugador 2: "));
-            p.registrarResultado(ganador,e1,e2);
-        } else {
-            EstadisticaTyP e1 = new EstadisticaTyP(p.getJugador1(), entero("Sets jugador 1: "), entero("Games jugador 1: "), entero("Aces jugador 1: "), entero("Errores no forzados jugador 1: "));
-            EstadisticaTyP e2 = new EstadisticaTyP(p.getJugador2(), entero("Sets jugador 2: "), entero("Games jugador 2: "), entero("Aces jugador 2: "), entero("Errores no forzados jugador 2: "));
-            p.registrarResultado(ganador,e1,e2);
+        if (partidos.isEmpty()) throw new IllegalStateException("No hay partidos individuales.");
+        for (int i = 0; i < partidos.size(); i++) {
+            PartidoIndividual p = partidos.get(i);
+            System.out.println((i + 1) + ". " + p.getFecha() + " | " + p.getDisciplina().getNombre()
+                    + " | " + (p.esDobles() ? "Dobles" : "Individual") + " | finalizado=" + p.isFinalizado());
         }
-        Ranking r1 = buscarOCrearRanking(p.getJugador1(), p.getDisciplina());
-        Ranking r2 = buscarOCrearRanking(p.getJugador2(), p.getDisciplina());
-        p.actualizarRankings(r1,r2);
-        System.out.println("Resultado guardado. ELO actualizado: "+r1.getJugador().getLogin()+"="+r1.getPuntaje()+", "+r2.getJugador().getLogin()+"="+r2.getPuntaje());
+        PartidoIndividual p = partidos.get(indice("Número de partido", partidos.size()));
+        if (p.isFinalizado()) throw new Exception("Este partido ya tiene resultado.");
+        List<Jugador> jugadores = p.getParticipantes();
+        System.out.println("Elige un integrante del equipo ganador (1 o 3 = equipo A; 2 o 4 = equipo B):");
+        for (int i = 0; i < jugadores.size(); i++) {
+            System.out.println((i + 1) + ". " + jugadores.get(i).getLogin());
+        }
+        Jugador ganador = jugadores.get(indice("Ganador", jugadores.size()));
+        List<clubDeportivoSeneca.modelo.individual.EstadisticaIndividual> datos = new ArrayList<>();
+        for (Jugador jugador : jugadores) {
+            System.out.println("Estadísticas de " + jugador.getLogin());
+            if (p.getDisciplina() instanceof TenisMesa) {
+                datos.add(new EstadisticaTMesa(jugador, entero("Sets: "), entero("Puntos: ")));
+            } else {
+                datos.add(new EstadisticaTyP(jugador, entero("Sets: "), entero("Games: "),
+                        entero("Aces: "), entero("Errores no forzados: ")));
+            }
+        }
+        if (p.esDobles()) {
+            p.registrarResultado(ganador, datos.get(0), datos.get(1), datos.get(2), datos.get(3));
+            Ranking r1 = buscarOCrearRanking(jugadores.get(0), p.getDisciplina());
+            Ranking r2 = buscarOCrearRanking(jugadores.get(1), p.getDisciplina());
+            Ranking r3 = buscarOCrearRanking(jugadores.get(2), p.getDisciplina());
+            Ranking r4 = buscarOCrearRanking(jugadores.get(3), p.getDisciplina());
+            p.actualizarRankings(r1, r2, r3, r4);
+        } else {
+            p.registrarResultado(ganador, datos.get(0), datos.get(1));
+            Ranking r1 = buscarOCrearRanking(jugadores.get(0), p.getDisciplina());
+            Ranking r2 = buscarOCrearRanking(jugadores.get(1), p.getDisciplina());
+            p.actualizarRankings(r1, r2);
+        }
+        System.out.println("Resultado registrado y ELO actualizado.");
     }
 
     protected Ranking buscarOCrearRanking(Jugador jugador, DeporteIndividual disciplina) throws Exception {

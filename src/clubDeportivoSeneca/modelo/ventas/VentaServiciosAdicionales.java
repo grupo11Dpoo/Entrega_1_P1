@@ -8,7 +8,8 @@ import clubDeportivoSeneca.modelo.usuario.Empleado;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
 public abstract class VentaServiciosAdicionales implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
+	
 	public static final int PORCENTAJE_PUNTOS = 2;
 	
 	private final LocalDate fecha;
@@ -128,6 +129,7 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
     
     protected void ejecutarCierre() {
         int total = calcularTotal();
+        // acumularPuntos recibe el valor de la compra y calcula el 2 % una sola vez.
         int puntosGanados = total * PORCENTAJE_PUNTOS / 100;
         if (puntosRedimidos > 0) {
         	try {
@@ -150,7 +152,7 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
         this.precioTotal = total;
         this.finalizada = true;
         if (puntosGanados > 0) {
-            comprador.acumularPuntos(puntosGanados);
+            comprador.acumularPuntos(total);
         }
     }
     
@@ -166,7 +168,7 @@ public abstract class VentaServiciosAdicionales implements java.io.Serializable{
         return null;
     }
     
-    //nuevas funcipnes proyecto2
+    //nuevas funciones proyecto2
     protected boolean hayDescuentoDeEmpleado() {
 		return false;
 	}

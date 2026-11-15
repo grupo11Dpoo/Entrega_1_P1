@@ -41,8 +41,8 @@ public class PartidoInterno extends PartidoConjuntos implements java.io.Serializ
     		throw new Exception("Los equipos deben pertenecer al mismo deporte.");
     	}
     	
-    	if(!equipoVisitante.getCategoriaEdad().equals(equipoVisitante.getCategoriaEdad())) {
-    		throw new Exception("Los equipos deben jugar en la misma categoría de edad.");
+    	if (!local.getCategoriaEdad().equals(equipoVisitante.getCategoriaEdad())) {
+    	    throw new Exception("Los equipos deben jugar en la misma categoría de edad.");
     	}
     	
     	if(!local.isActivo() || !equipoVisitante.isActivo()) {

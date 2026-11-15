@@ -42,7 +42,7 @@ public abstract class Circuito implements java.io.Serializable{
 		this.requisitosInscripcion = requisitosInscripcion;
 		this.inscritos = new ArrayList<InscripcionCompetencia>();
 		this.partidos = new ArrayList<PartidoCompetencia>();
-		this.estadisticas = null;
+		this.estadisticas = new EstadisticasCompetencia();
 	}
 
 	public RequisitosInscripcionCircuito getRequisitosInscripcion() {
