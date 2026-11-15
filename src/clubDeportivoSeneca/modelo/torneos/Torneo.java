@@ -1,6 +1,5 @@
 package clubDeportivoSeneca.modelo.torneos;
  
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,8 +16,8 @@ import clubDeportivoSeneca.modelo.individual.Ranking;
 import clubDeportivoSeneca.modelo.turnos.Turno;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
  
-@SuppressWarnings("serial")
-public abstract class Torneo implements Serializable {
+public abstract class Torneo implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
  
     private String nombre;
     private Deporte deporte;

@@ -1,10 +1,9 @@
 package clubDeportivoSeneca.modelo.torneos;
  
-import java.io.Serializable;
 import java.time.LocalDateTime;
  
-@SuppressWarnings("serial")
-public class Encuentro implements Serializable {
+public class Encuentro implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
  
     private Inscripcion local;
     private Inscripcion visitante;

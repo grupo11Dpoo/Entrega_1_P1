@@ -46,9 +46,9 @@ import clubDeportivoSeneca.modelo.usuario.Entrenador;
 import clubDeportivoSeneca.modelo.usuario.Usuario;
 import clubDeportivoSeneca.modelo.ventas.VentaServiciosAdicionales;
 
-
-@SuppressWarnings("serial")
 public class ClubDeportivoSeneca implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Administrador administrador;
     private Map<String, Usuario> usuarios = new LinkedHashMap<>();

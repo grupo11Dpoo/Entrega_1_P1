@@ -1,10 +1,9 @@
 package clubDeportivoSeneca.modelo.torneos;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-@SuppressWarnings("serial")
-public class BonoDescuento implements Serializable {
+public class BonoDescuento implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String torneoOrigen;
     private double porcentaje;

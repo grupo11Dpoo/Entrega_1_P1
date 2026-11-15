@@ -7,21 +7,13 @@ import java.util.Map;
 
 import clubDeportivoSeneca.modelo.deportes.CategoriaEdad;
 import clubDeportivoSeneca.modelo.deportes.DeporteDeConjunto;
-import clubDeportivoSeneca.modelo.entrenamiento.Entrenamiento;
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.individual.PartidoIndividual;
 import clubDeportivoSeneca.modelo.inventario.Articulo;
-import clubDeportivoSeneca.modelo.inventario.InventarioArticulos;
 import clubDeportivoSeneca.modelo.inventario.SugerenciaProducto;
-import clubDeportivoSeneca.modelo.partidos.PartidoConjuntos;
-import clubDeportivoSeneca.modelo.partidos.PartidoInterno;
 import clubDeportivoSeneca.modelo.turnos.Turno;
-import clubDeportivoSeneca.modelo.ventas.Periodo;
-import clubDeportivoSeneca.modelo.ventas.Rubro;
-import clubDeportivoSeneca.modelo.ventas.VentaServiciosAdicionales;
 import clubDeportivoSeneca.modelo.turnos.SolicitudCambioTurno;
 import clubDeportivoSeneca.modelo.instalaciones.InventarioInstalaciones;
-import clubDeportivoSeneca.modelo.instalaciones.Reserva;
 import clubDeportivoSeneca.sistema.ClubDeportivoSeneca;
 
 public class Administrador extends Usuario implements java.io.Serializable {

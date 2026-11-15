@@ -8,8 +8,8 @@ import clubDeportivoSeneca.modelo.deportes.Deporte;
 import clubDeportivoSeneca.modelo.individual.NivelJugador;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
  
-@SuppressWarnings("serial")
-public class TorneoRecreativo extends Torneo {
+public class TorneoRecreativo extends Torneo implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
  
     private double porcentajeBono;
  

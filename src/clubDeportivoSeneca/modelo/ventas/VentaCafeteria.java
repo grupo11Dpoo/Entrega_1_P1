@@ -13,9 +13,8 @@ import clubDeportivoSeneca.modelo.instalaciones.Instalacion;
 import clubDeportivoSeneca.modelo.usuario.Comprador;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-@SuppressWarnings("serial")
 public class VentaCafeteria extends VentaServiciosAdicionales implements java.io.Serializable{
-	
+	private static final long serialVersionUID = 1L;	
 	public static final int IMPUESTO = 8;
     public static final int PROPINA_SUGERIDA = 10;
  

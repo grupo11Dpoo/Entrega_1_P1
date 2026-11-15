@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.AtomicMoveNotSupportedException;
 
 import clubDeportivoSeneca.sistema.ClubDeportivoSeneca;
 
@@ -34,10 +36,19 @@ public class ArchivoPlano {
         if (club == null) throw new IllegalArgumentException("No hay datos del club para guardar.");
         Path carpeta = archivo.getParent();
         if (carpeta != null) Files.createDirectories(carpeta);
-        try (ObjectOutputStream salida = new ObjectOutputStream(
-                new BufferedOutputStream(Files.newOutputStream(archivo)))) {
-            salida.writeObject(club);
-            salida.flush();
+        Path temporal = Files.createTempFile(carpeta, "cds-", ".tmp");
+        try {
+            try (ObjectOutputStream salida = new ObjectOutputStream(
+                    new BufferedOutputStream(Files.newOutputStream(temporal)))) {
+                salida.writeObject(club);
+            }
+            try {
+                Files.move(temporal, archivo, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(temporal, archivo, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } finally {
+            Files.deleteIfExists(temporal);
         }
     }
 

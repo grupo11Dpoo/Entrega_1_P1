@@ -8,7 +8,8 @@ import java.util.List;
 import clubDeportivoSeneca.modelo.deportes.DeporteIndividual;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-public class Ranking implements java.io.Serializable{
+public class Ranking implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
     public static final int FACTOR_K = 32;
     public static final int PUNTAJE_INICIAL = 1000;

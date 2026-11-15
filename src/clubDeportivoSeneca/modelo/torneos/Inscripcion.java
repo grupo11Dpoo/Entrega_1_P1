@@ -1,14 +1,13 @@
 package clubDeportivoSeneca.modelo.torneos;
  
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
  
 import clubDeportivoSeneca.modelo.equipos.Equipo;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
- 
-@SuppressWarnings("serial")
-public class Inscripcion implements Serializable {
+
+public class Inscripcion implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
  
     private final Equipo equipo;            
     private final List<Jugador> jugadores;    

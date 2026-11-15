@@ -7,9 +7,8 @@ import clubDeportivoSeneca.modelo.usuario.Comprador;
 import clubDeportivoSeneca.modelo.usuario.Empleado;
 import clubDeportivoSeneca.modelo.usuario.Jugador;
 
-@SuppressWarnings("serial")
 public abstract class VentaServiciosAdicionales implements java.io.Serializable{
-	
+	private static final long serialVersionUID = 1L;	
 	public static final int PORCENTAJE_PUNTOS = 2;
 	
 	private final LocalDate fecha;

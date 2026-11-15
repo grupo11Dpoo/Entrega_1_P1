@@ -2,6 +2,9 @@ package clubDeportivoSeneca.modelo.inventario;
 
 import clubDeportivoSeneca.modelo.usuario.Empleado;
 public class SugerenciaProducto implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private final Empleado empleado;
 	private final String nombre;
 	private final String descripcion;
