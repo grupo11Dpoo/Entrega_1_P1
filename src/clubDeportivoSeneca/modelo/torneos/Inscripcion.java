@@ -9,8 +9,8 @@ import clubDeportivoSeneca.modelo.usuario.Jugador;
 public class Inscripcion implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
  
-    private final Equipo equipo;            
-    private final List<Jugador> jugadores;    
+    private Equipo equipo;            
+    private List<Jugador> jugadores;    
     private boolean cupoPreferencial;           
  
 

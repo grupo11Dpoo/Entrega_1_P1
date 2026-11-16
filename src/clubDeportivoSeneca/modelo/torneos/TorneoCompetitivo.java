@@ -10,7 +10,7 @@ import clubDeportivoSeneca.modelo.usuario.Jugador;
 public class TorneoCompetitivo extends Torneo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
  
-    private final double tarifaInscripcion;
+    private double tarifaInscripcion;
  
     public TorneoCompetitivo(String nombre, Deporte deporte, CategoriaEdad categoriaEdad, NivelJugador nivel,
                              boolean dobles, int cupos, LocalDate fechaInicio, double tarifaInscripcion) throws Exception {
