@@ -1,6 +1,7 @@
 package clubDeportivoSeneca.modelo.torneos;
  
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -270,7 +271,7 @@ public abstract class Torneo implements java.io.Serializable {
         inscripciones.remove(inscripcion);
     }
  
-    public Encuentro registrarEncuentro(Inscripcion local, Inscripcion visitante, java.time.LocalDateTime fecha)
+    public Encuentro registrarEncuentro(Inscripcion local, Inscripcion visitante, LocalDateTime fecha)
             throws Exception {
         if (estado == EstadoTorneo.FINALIZADO) {
             throw new Exception("El torneo ya finalizó.");
@@ -420,7 +421,7 @@ public abstract class Torneo implements java.io.Serializable {
     }
  
 
-    protected static boolean esEmpleado(Jugador jugador) {
+    protected boolean esEmpleado(Jugador jugador) {
         return jugador.getPerfilEmpleado() != null;
     }
  
